@@ -7,7 +7,7 @@ public class Panel extends JPanel {
     @Override
     public void paint(Graphics g) {
         //super.paint(g);
-        AbstractVerticalPicture absVPict = new AbstractVerticalPicture();
-        absVPict.draw(g,50, 50, 200, 300);
+        AbstractVerticalPicture absVPict = new AbstractVerticalPicture(50, 50, 200, 300);
+        absVPict.draw(g);
     }
 }
