@@ -6,6 +6,60 @@ public interface Drawable {
     void draw(Graphics g);
 }
 
+class PanelOfExhibition implements Drawable {
+    private int X, Y, width, length, angle = 0;
+
+    public PanelOfExhibition(int x, int y, int width, int length, int angle) {
+        X = x;
+        Y = y;
+        this.width = width;
+        this.length = length;
+        this.angle = angle;
+    }
+
+    public PanelOfExhibition(int x, int y, int width, int length) {
+        X = x;
+        Y = y;
+        this.width = width;
+        this.length = length;
+    }
+
+    @Override
+    public void draw(Graphics g) {
+        Point upperP = new Point(X + width / 3, Y + length / 5);
+        Point bottomP = new Point(X + width / 3, Y + length * 4 / 5);
+
+        Polygon p = new Polygon();
+        g.setColor(Color.LIGHT_GRAY);
+        p.addPoint(bottomP.x, bottomP.y);
+        p.addPoint(upperP.x, upperP.y);
+        p.addPoint(X, Y);
+        p.addPoint(X, Y+length);
+        g.fillPolygon(p);
+
+        p.reset();
+        g.setColor(Color.gray);
+        p.addPoint(upperP.x, upperP.y);
+        p.addPoint(X, Y);
+        p.addPoint(X+width, Y);
+        g.fillPolygon(p);
+
+        p.reset();
+        p.addPoint(bottomP.x, bottomP.y);
+        p.addPoint(X, Y+length);
+        p.addPoint(X+width, Y+length);
+        g.fillPolygon(p);
+        //base line
+        g.setColor(Color.BLACK);
+        g.drawLine(upperP.x, upperP.y, bottomP.x, bottomP.y);
+
+        g.drawLine(upperP.x, upperP.y, X, Y);
+        g.drawLine(upperP.x, upperP.y, X + width, Y);
+        g.drawLine(bottomP.x, bottomP.y, X, Y + length);
+        g.drawLine(bottomP.x, bottomP.y, X + width, Y + length);
+    }
+}
+
 class AbstractVerticalPicture implements Drawable {
 
     private int X, Y, width, length;
@@ -52,20 +106,16 @@ class AbstractVerticalPicture implements Drawable {
         g.setColor(Color.pink);
         g.fillOval(X + width / 4, Y + length / 6, width / 2, width / 2);
 
+        g.setColor(Color.gray); // try to make a striped ark
+        g.fillArc(X + width / 4, Y + length / 6, width / 2 + 1, width / 2 + 1, -135, 180);
+
         g.setColor(Color.YELLOW);
         trianglePoints[0] = new Point(X + width / 3 - width / 25, Y + length * 2 / 15);
         trianglePoints[1] = new Point(X + 2 * width / 3 + width / 25, Y + length * 2 / 15);
         trianglePoints[2] = new Point(X + width / 2, Y + length / 5 + length / 15);
-/*        yellowTriangle[0][0] = width * 3 / 4;
-        yellowTriangle[0][1] = length / 9;
-        yellowTriangle[1][0] = width * 5 / 4;
-        yellowTriangle[1][1] = length / 9;
-        yellowTriangle[2][0] = width / 2;
-        yellowTriangle[2][1] = length * 3 / 10;*/
         triangle = new Triangle(trianglePoints);
         triangle.fillTriangle(g);
 
-        //ReversedTriangle.instance.draw(g, 150, 150, length / 5, width);
         g.setColor(Color.BLACK);
         g.drawRect(X, Y, width, length);
     }
@@ -198,8 +248,8 @@ class Frame implements Drawable {
         g.drawRect(X, Y, width, length);
         g.drawRect(X + thickness, Y + thickness, width - 2 * thickness, length - 2 * thickness);
         int lengthOfText = 8 * text.length();
-        g.drawRect(X+(width-lengthOfText)/2, Y+length-thickness, lengthOfText, thickness);
+        g.drawRect(X + (width - lengthOfText) / 2, Y + length - thickness, lengthOfText, thickness);
 
-        g.drawString(text,X+(width-lengthOfText)/2 + lengthOfText/8, Y+length-thickness/3);
+        g.drawString(text, X + (width - lengthOfText) / 2 + lengthOfText / 8, Y + length - thickness / 3);
     }
 }
