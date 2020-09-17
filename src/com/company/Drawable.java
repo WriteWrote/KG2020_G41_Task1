@@ -7,7 +7,8 @@ public interface Drawable {
 }
 
 class PanelOfExhibition implements Drawable {
-    private int X, Y, width, length, angle = 0;
+    private int X, Y, width, length;
+    private double angle = 0;
 
     public PanelOfExhibition(int x, int y, int width, int length, int angle) {
         X = x;
@@ -29,25 +30,27 @@ class PanelOfExhibition implements Drawable {
         Point upperP = new Point(X + width / 3, Y + length / 5);
         Point bottomP = new Point(X + width / 3, Y + length * 4 / 5);
 
+        angle = Math.atan((upperP.y - Y) / (X + width - upperP.x));
+
         Polygon p = new Polygon();
         g.setColor(Color.LIGHT_GRAY);
         p.addPoint(bottomP.x, bottomP.y);
         p.addPoint(upperP.x, upperP.y);
         p.addPoint(X, Y);
-        p.addPoint(X, Y+length);
+        p.addPoint(X, Y + length);
         g.fillPolygon(p);
 
         p.reset();
         g.setColor(Color.gray);
         p.addPoint(upperP.x, upperP.y);
         p.addPoint(X, Y);
-        p.addPoint(X+width, Y);
+        p.addPoint(X + width, Y);
         g.fillPolygon(p);
 
         p.reset();
         p.addPoint(bottomP.x, bottomP.y);
-        p.addPoint(X, Y+length);
-        p.addPoint(X+width, Y+length);
+        p.addPoint(X, Y + length);
+        p.addPoint(X + width, Y + length);
         g.fillPolygon(p);
         //base line
         g.setColor(Color.BLACK);
