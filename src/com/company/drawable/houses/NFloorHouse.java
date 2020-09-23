@@ -6,11 +6,12 @@ import com.company.drawable.util_units.Window;
 
 import java.awt.*;
 
-public class NFloorHouse implements Drawable {
+public class NFloorHouse extends House {
     private int X, Y, floorWidth, floorHeight, N_OfFloor;
     private Color color = Color.PINK;
 
     public NFloorHouse(int x, int y, int floorWidth, int floorHeight, int nOfFloor, Color color) {
+        super(x, y, floorWidth, floorHeight, color);
         X = x;
         Y = y;
         this.floorWidth = floorWidth;
@@ -20,6 +21,7 @@ public class NFloorHouse implements Drawable {
     }
 
     public NFloorHouse(int x, int y, int floorWidth, int floorHeight, int nOfFloor) {
+        super(x, y, floorWidth, floorHeight);
         X = x;
         Y = y;
         this.floorWidth = floorWidth;

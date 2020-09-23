@@ -1,14 +1,16 @@
 package com.company.drawable.houses;
 
 import com.company.Drawable;
+
 import java.awt.*;
 
-public class Capitol implements Drawable {
+public class Capitol extends House {
     private int X, Y, width, height;
     private String name;
     private Color color = Color.GRAY;
 
     public Capitol(int x, int y, int width, int height, String name) {
+        super(x, y, width, height);
         X = x;
         Y = y;
         this.width = width;
@@ -17,6 +19,7 @@ public class Capitol implements Drawable {
     }
 
     public Capitol(int x, int y, int width, int height, String name, Color color) {
+        super(x, y, width, height, color);
         X = x;
         Y = y;
         this.width = width;
@@ -35,7 +38,7 @@ public class Capitol implements Drawable {
         int lengthOfText = 8 * name.length();
         g.fillRect(X + (width - lengthOfText) / 2, Y, lengthOfText, 25);
         g.setColor(Color.black);
-        g.drawString(name, X + (width - lengthOfText+7) / 2 + lengthOfText / 8, Y + 3*25/5);
+        g.drawString(name, X + (width - lengthOfText + 7) / 2 + lengthOfText / 8, Y + 3 * 25 / 5);
 
     }
 }
