@@ -6,193 +6,173 @@ public interface Drawable {
     void draw(Graphics g);
 }
 
-class PanelOfExhibition implements Drawable {
-    private int X, Y, width, length;
-    private double angle = 0;
+class OneFloorHouse implements Drawable {
+    private int X, Y, width, height;
+    private Color color = Color.PINK;
 
-    public PanelOfExhibition(int x, int y, int width, int length, int angle) {
+    public OneFloorHouse(int x, int y, int width, int height, Color color) {
         X = x;
         Y = y;
         this.width = width;
-        this.length = length;
-        this.angle = angle;
+        this.height = height;
+        this.color = color;
     }
 
-    public PanelOfExhibition(int x, int y, int width, int length) {
+    public OneFloorHouse(int x, int y, int width, int height) {
         X = x;
         Y = y;
         this.width = width;
-        this.length = length;
+        this.height = height;
     }
+
 
     @Override
     public void draw(Graphics g) {
-        Point upperP = new Point(X + width / 3, Y + length / 5);
-        Point bottomP = new Point(X + width / 3, Y + length * 4 / 5);
+        g.setColor(color);
+        g.fillRect(X, Y, width, height);
 
-        angle = Math.atan((upperP.y - Y) / (X + width - upperP.x));
+        Door door = new Door(X + width / 2, Y + height / 2, width / 3, height / 2);
+        door.draw(g);
 
-        Polygon p = new Polygon();
-        g.setColor(Color.LIGHT_GRAY);
-        p.addPoint(bottomP.x, bottomP.y);
-        p.addPoint(upperP.x, upperP.y);
-        p.addPoint(X, Y);
-        p.addPoint(X, Y + length);
-        g.fillPolygon(p);
-
-        p.reset();
-        g.setColor(Color.gray);
-        p.addPoint(upperP.x, upperP.y);
-        p.addPoint(X, Y);
-        p.addPoint(X + width, Y);
-        g.fillPolygon(p);
-
-        p.reset();
-        p.addPoint(bottomP.x, bottomP.y);
-        p.addPoint(X, Y + length);
-        p.addPoint(X + width, Y + length);
-        g.fillPolygon(p);
-        //base line
-        g.setColor(Color.BLACK);
-        g.drawLine(upperP.x, upperP.y, bottomP.x, bottomP.y);
-
-        g.drawLine(upperP.x, upperP.y, X, Y);
-        g.drawLine(upperP.x, upperP.y, X + width, Y);
-        g.drawLine(bottomP.x, bottomP.y, X, Y + length);
-        g.drawLine(bottomP.x, bottomP.y, X + width, Y + length);
+        Window window = new Window(X + width / 8, Y + 2 * height / 4, width / 4, height / 3);
+        window.draw(g);
     }
 }
 
-class AbstractVerticalPicture implements Drawable {
+class NFloorHouse implements Drawable {
+    private int X, Y, floorWidth, floorHeight, N_OfFloor;
+    private Color color = Color.PINK;
 
-    private int X, Y, width, length;
+    public NFloorHouse(int x, int y, int floorWidth, int floorHeight, int nOfFloor, Color color) {
+        X = x;
+        Y = y;
+        this.floorWidth = floorWidth;
+        this.floorHeight = floorHeight;
+        N_OfFloor = nOfFloor;
+        this.color = color;
+    }
 
-    public AbstractVerticalPicture(int x, int y, int width, int length) {
-        if (x >= 0) X = x;
-        else X = Math.abs(x);
-        if (y >= 0) Y = y;
-        else Y = Math.abs(y);
-        if (width >= 0) this.width = width;
-        else this.width = Math.abs(width);
-        if (length >= 0) this.length = length;
-        else this.length = Math.abs(length);
+    public NFloorHouse(int x, int y, int floorWidth, int floorHeight, int nOfFloor) {
+        X = x;
+        Y = y;
+        this.floorWidth = floorWidth;
+        this.floorHeight = floorHeight;
+        N_OfFloor = nOfFloor;
+    }
+
+
+    @Override
+    public void draw(Graphics g) {
+        int[] roofXPoints = {X, X + floorWidth / 2, X + floorWidth};
+        int[] roofYPoints = {Y + floorHeight / 3, Y, Y + floorHeight / 3};
+        g.setColor(Color.LIGHT_GRAY);
+        g.fillPolygon(new Polygon(roofXPoints, roofYPoints, 3));
+
+        for (int i = 0; i < N_OfFloor; i++) {
+            g.setColor(color);
+            g.fillRect(X, Y + floorHeight / 3 + i * floorHeight, floorWidth, floorHeight);
+            Window window = new Window(X + floorWidth / 8, Y + 2 * floorHeight / 4 + i * floorHeight, floorWidth / 4, floorHeight / 3);
+            window.draw(g);
+        }
+
+        Door door = new Door(X + floorWidth / 2, Y + (N_OfFloor) * floorHeight - floorHeight / 6,
+                floorWidth / 3, floorHeight / 2);
+        door.draw(g);
+
+    }
+}
+
+class Capitol implements Drawable {
+    private int X, Y, width, height;
+    private String name;
+    private Color color = Color.GRAY;
+
+    public Capitol(int x, int y, int width, int height, String name) {
+        X = x;
+        Y = y;
+        this.width = width;
+        this.height = height;
+        this.name = name;
+    }
+
+    public Capitol(int x, int y, int width, int height, String name, Color color) {
+        X = x;
+        Y = y;
+        this.width = width;
+        this.height = height;
+        this.name = name;
+        this.color = color;
     }
 
     @Override
     public void draw(Graphics g) {
-        g.setColor(Color.WHITE);
-        g.fillRect(X, Y, width, length);
-
-        g.setColor(Color.LIGHT_GRAY);
-        g.fillRect(X, Y, width, length / 5);
+        OneFloorHouse oneFloorHouse = new OneFloorHouse(X, Y, width, height, color);
+        oneFloorHouse.draw(g);
 
         g.setColor(Color.CYAN);
-        Point[] trianglePoints = new Point[3];
-        trianglePoints[0] = new Point(X, Y + length / 2);
-        trianglePoints[1] = new Point(X, Y + length);
-        trianglePoints[2] = new Point(X + 3 * width / 4, Y + length);
-        Triangle triangle = new Triangle(trianglePoints);
-        triangle.fillTriangle(g);
-
-        trianglePoints[0].x = X + width;
-        trianglePoints[1].x = X + width;
-        trianglePoints[2].x = X + width / 4;
-        triangle = new Triangle(trianglePoints);
-        triangle.fillTriangle(g);
-
+        g.fillRect(X, Y, 7 * name.length(), height / 8);
         g.setColor(Color.BLACK);
-        StripedTriangle stripedTriangle = new StripedTriangle(X, Y, width, length / 5);
-        stripedTriangle.draw(g);
-        stripedTriangle = new StripedTriangle(X + width / 25, Y + 4 * length / 5 + length / 30, width - 2 * width / 25, length / 6);
-        stripedTriangle.draw(g);
+        g.drawString(name, X + name.length(), Y+height/12);
 
-        g.setColor(Color.pink);
-        g.fillOval(X + width / 4, Y + length / 6, width / 2, width / 2);
 
-        g.setColor(Color.gray); // try to make a striped ark
-        g.fillArc(X + width / 4, Y + length / 6, width / 2 + 1, width / 2 + 1, -135, 180);
-
-        g.setColor(Color.YELLOW);
-        trianglePoints[0] = new Point(X + width / 3 - width / 25, Y + length * 2 / 15);
-        trianglePoints[1] = new Point(X + 2 * width / 3 + width / 25, Y + length * 2 / 15);
-        trianglePoints[2] = new Point(X + width / 2, Y + length / 5 + length / 15);
-        triangle = new Triangle(trianglePoints);
-        triangle.fillTriangle(g);
-
-        g.setColor(Color.BLACK);
-        g.drawRect(X, Y, width, length);
     }
 }
 
-class StripedTriangle implements Drawable {
-    private int X, Y, width, length;
+class Door implements Drawable {
+    private int X, Y, width, height;
+    private Color color = Color.GRAY;
 
-    public StripedTriangle(int x, int y, int width, int length) {
-        if (x >= 0) X = x;
-        else X = Math.abs(x);
-        if (y >= 0) Y = y;
-        else Y = Math.abs(y);
-        if (width >= 0) this.width = width;
-        else this.width = Math.abs(width);
-        if (length >= 0) this.length = length;
-        else this.length = Math.abs(length);
+    public Door(int x, int y, int width, int height, Color color) {
+        X = x;
+        Y = y;
+        this.width = width;
+        this.height = height;
+        this.color = color;
     }
 
-    public void draw(Graphics g) {
-        int j = 0;
-        for (int i = 0; i < length; i++) {
-            g.drawLine(X + width / 2 - j, Y + i, X + width / 2 + j, Y + i);
-            if (j < width / 3) j++;
-        }
-    }
-}
-
-class Triangle implements Drawable {
-    private Polygon triangle;
-
-    public Triangle(int x1, int y1, int x2, int y2, int x3, int y3) {
-        triangle = new Polygon();
-        triangle.addPoint(x1, y1);
-        triangle.addPoint(x2, y2);
-        triangle.addPoint(x3, y3);
-    }
-
-    public Triangle(int[] X, int[] Y) {
-        if (X.length == Y.length && X.length == 3)
-            triangle = new Polygon(X, Y, X.length);
-    }
-
-    public Triangle(Point[] points) {
-        if (points.length == 3) {
-            int[] X = new int[points.length];
-            int[] Y = new int[points.length];
-            for (int i = 0; i < points.length; i++) {
-                X[i] = points[i].x;
-                Y[i] = points[i].y;
-            }
-            triangle = new Polygon(X, Y, X.length);
-        }
-    }
-
-    public Triangle(int[][] points) {
-        if (points.length == 3) {
-            int[] X = new int[points.length];
-            int[] Y = new int[points.length];
-            for (int i = 0; i < points.length; i++) {
-                X[i] = points[i][0];
-                Y[i] = points[i][1];
-            }
-            triangle = new Polygon(X, Y, X.length);
-        }
+    public Door(int x, int y, int width, int height) {
+        X = x;
+        Y = y;
+        this.width = width;
+        this.height = height;
     }
 
     @Override
     public void draw(Graphics g) {
-        g.drawPolygon(triangle);
+        g.setColor(color);
+        g.fillRect(X, Y, width, height);
+        for (int i = width / 10; i < width - width / 10; i += 5 * width / 10) {
+            g.setColor(Color.darkGray);
+            g.fillRect(X + i, Y + height / 15, 3 * width / 10, 4 * height / 10);
+        }
+        for (int i = width / 10; i < width - width / 10; i += 5 * width / 10) {
+            g.setColor(Color.darkGray);
+            g.fillRect(X + i, Y + 8 * height / 15, 3 * width / 10, 4 * height / 10);
+        }
+    }
+}
+
+class Window implements Drawable {
+    private int X, Y, width, heigth;
+
+    public Window(int x, int y, int width, int heigth) {
+        X = x;
+        Y = y;
+        this.width = width;
+        this.heigth = heigth;
     }
 
-    public void fillTriangle(Graphics g) {
-        g.fillPolygon(triangle);
+    @Override
+    public void draw(Graphics g) {
+        g.setColor(Color.CYAN);
+        g.fillRect(X, Y, width, heigth);
+
+        g.setColor(Color.LIGHT_GRAY);
+        g.fillRect(X, Y + heigth / 3, width, heigth / 15);
+        g.fillRect(X + width / 2, Y, heigth / 15, heigth / 3);
+
+        Frame frame = new Frame(X, Y, width, heigth, heigth / 15, Color.LIGHT_GRAY);
+        frame.draw(g);
     }
 }
 
@@ -245,14 +225,5 @@ class Frame implements Drawable {
         g.fillRect(X, Y, thickness, length);
         g.fillRect(X + width - thickness, Y, thickness, length);
         g.fillRect(X, Y + length - thickness, width, thickness);
-
-        g.setColor(Color.BLACK);
-
-        g.drawRect(X, Y, width, length);
-        g.drawRect(X + thickness, Y + thickness, width - 2 * thickness, length - 2 * thickness);
-        int lengthOfText = 8 * text.length();
-        g.drawRect(X + (width - lengthOfText) / 2, Y + length - thickness, lengthOfText, thickness);
-
-        g.drawString(text, X + (width - lengthOfText) / 2 + lengthOfText / 8, Y + length - thickness / 3);
     }
 }

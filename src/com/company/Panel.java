@@ -7,13 +7,17 @@ public class Panel extends JPanel {
     @Override
     public void paint(Graphics g) {
         //super.paint(g);
-        PanelOfExhibition p = new PanelOfExhibition(0,0, this.getWidth(), this.getHeight());
-        p.draw(g);
+        /*OneFloorHouse oneFloorHouse = new OneFloorHouse(getWidth()/8, 2*getHeight()/5, getWidth()/5, 2*getHeight()/5);
+        oneFloorHouse.draw(g);
+*/
+        NFloorHouse ThreeFloorHouse = new NFloorHouse(350, 50, 70, 100, 3, Color.GREEN);
+        ThreeFloorHouse.draw(g);
 
-        Frame grayFrame = new Frame(50, 50, 250, 350, 25);
-        grayFrame.draw(g);
-        AbstractVerticalPicture absVPict = new AbstractVerticalPicture(50+25, 50+25, 200, 300);
-        absVPict.draw(g);
+        NFloorHouse OneFloorHouse = new NFloorHouse(450, 50, 100, 100, 1, Color.MAGENTA);
+        OneFloorHouse.draw(g);
+
+        Capitol library = new Capitol(50, 200, 100, 150, "Library", Color.MAGENTA);
+        library.draw(g);
 
     }
 }
