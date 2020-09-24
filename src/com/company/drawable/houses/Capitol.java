@@ -30,9 +30,10 @@ public class Capitol extends House {
 
     @Override
     public void draw(Graphics g) {
-        OneFloorHouse oneFloorHouse = new OneFloorHouse(X, Y, width, height, color);
+        /*OneFloorHouse oneFloorHouse = new OneFloorHouse(X, Y, width, height, color);
         oneFloorHouse.draw(g);
-
+*/
+        drawHouseUnit(g,X, Y, width, height, color);
         g.setColor(Color.CYAN);
 
         int lengthOfText = 8 * name.length();

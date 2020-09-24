@@ -38,10 +38,10 @@ public class NFloorHouse extends House {
         g.fillPolygon(new Polygon(roofXPoints, roofYPoints, 3));
 
         for (int i = 0; i < N_OfFloor; i++) {
-            g.setColor(color);
-            g.fillRect(X, Y + floorHeight / 3 + i * floorHeight, floorWidth, floorHeight);
-            Window window = new Window(X + floorWidth / 8, Y + 2 * floorHeight / 4 + i * floorHeight, floorWidth / 4, floorHeight / 3);
-            window.draw(g);
+            drawHouseUnit(g, X, Y + floorHeight / 3 + i * floorHeight, floorWidth, floorHeight, color);
+            //g.fillRect(X, Y + floorHeight / 3 + i * floorHeight, floorWidth, floorHeight);
+            //Window window = new Window(X + floorWidth / 8, Y + 2 * floorHeight / 4 + i * floorHeight, floorWidth / 4, floorHeight / 3);
+            //window.draw(g);
         }
 
         Door door = new Door(X + floorWidth / 2, Y + (N_OfFloor) * floorHeight - floorHeight / 6,

@@ -25,8 +25,15 @@ abstract public class House implements Drawable {
         this.color = color;
     }
 
-    protected void drawHouseUnit(Graphics g){
+    protected void drawHouseUnit(Graphics g, int X, int Y, int width, int height, Color color){
         g.setColor(color);
+        g.fillRect(X, Y, width, height);
+
+        Window window = new Window(X + width / 8, Y + 2 * height / 4, width / 4, height / 3);
+        window.draw(g);
+    }
+    protected void drawHouseUnit(Graphics g, int X, int Y, int width, int height){
+        g.setColor(this.color);
         g.fillRect(X, Y, width, height);
 
         Window window = new Window(X + width / 8, Y + 2 * height / 4, width / 4, height / 3);
