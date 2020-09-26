@@ -6,7 +6,7 @@ import java.awt.*;
 
 public class Gate implements Drawable {
     private int X, Y, width, height;
-    private Color color = new Color(0x8C2E4B);
+    private Color color = new Color(0x8C1042);
 
     public Gate(int x, int y, int width, int height) {
         X = x;
@@ -28,12 +28,14 @@ public class Gate implements Drawable {
         Graphics2D g2 = (Graphics2D) g;
         g.setColor(color);
         g.fillArc(X, Y, width, height, 0, 180);
-        g.setColor(Color.black);
-        g.fillRect(X+width/2, Y, 5, height/2);
+
+        g2.setColor(Color.black);
+        g2.setStroke(new BasicStroke(3));
+        g2.drawLine(X+width/2, Y+2, X+width/2, Y + height/2-1);
 
         g2.setColor(Color.YELLOW);
         g2.setStroke(new BasicStroke(4));
-        g2.drawOval(X + width/2 - width/4, Y + height/4, width/7, width/5);
+        g2.drawOval(X + width/2 - width/3, Y + height/4, width/7, width/5);
         g2.drawOval(X + width/2 + width/6, Y + height/4, width/7, width/5);
     }
 }

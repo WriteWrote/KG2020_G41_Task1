@@ -13,23 +13,7 @@ public class Panel extends JPanel {
     @Override
     public void paint(Graphics g) {
         //super.paint(g);
-        /*
-        Tower tower = new Tower(100, 70, 100, 180);
-        tower.draw(g);
-        tower = new Tower(220, 20, 130, 230);
-        tower.draw(g);
-        tower = new Tower (370, 70, 100, 180);
-        tower.draw(g);
-
-        g.setColor(Color.pink);
-        g.fillRect(80, 249, 410, 100);
-
-        Gate gate = new Gate(245, 270, 80, 158);
-        gate.draw(g);
-
-         */
-
-        Castle castle = new Castle(100, 100, 400, 500, 3);
+        Castle castle = new Castle(100, 100, 400, 400, 6);
         castle.draw(g);
     }
 }

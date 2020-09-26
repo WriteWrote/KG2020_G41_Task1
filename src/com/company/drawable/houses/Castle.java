@@ -57,7 +57,7 @@ public class Castle extends House {
 
             g.setColor(color);
             g.fillRect(X + deltaX * ((N_OfTowers + 1) / 2), Y + deltaY * 2, deltaX, deltaY);
-            Tower centerTower = new Tower(X + deltaX * ((N_OfTowers + 1) / 2) + deltaX / 8, Y, deltaX*3/4, deltaY*2);
+            Tower centerTower = new Tower(X + deltaX * ((N_OfTowers + 1) / 2) + deltaX / 8, Y+1, deltaX*3/4, deltaY*2);
             centerTower.draw(g);
 
 
@@ -69,19 +69,7 @@ public class Castle extends House {
             }
         }
 
-/*
-        Tower tower = new Tower(100, 70, 100, 180);
-        tower.draw(g);
-        tower = new Tower(220, 20, 130, 230);
-        tower.draw(g);
-        tower = new Tower (370, 70, 100, 180);
-        tower.draw(g);
-
-        g.setColor(Color.pink);
-        g.fillRect(80, 249, 410, 100);
-
-        Gate gate = new Gate(245, 270, 80, 158);
+        Gate gate = new Gate(X + deltaX*(N_OfTowers/2+1), Y+2*deltaY+deltaY/4-1, deltaX, 3*deltaY/2);
         gate.draw(g);
-*/
     }
 }
