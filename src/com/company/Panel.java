@@ -2,6 +2,7 @@ package com.company;
 
 import com.company.drawable.houses.*;
 import com.company.drawable.util_drawunits.CouncilSpike;
+import com.company.drawable.util_drawunits.Gate;
 import com.company.drawable.util_drawunits.Tower;
 
 import javax.swing.*;
@@ -12,6 +13,7 @@ public class Panel extends JPanel {
     @Override
     public void paint(Graphics g) {
         //super.paint(g);
+        /*
         Tower tower = new Tower(100, 70, 100, 180);
         tower.draw(g);
         tower = new Tower(220, 20, 130, 230);
@@ -21,6 +23,13 @@ public class Panel extends JPanel {
 
         g.setColor(Color.pink);
         g.fillRect(80, 249, 410, 100);
-        int x;
+
+        Gate gate = new Gate(245, 270, 80, 158);
+        gate.draw(g);
+
+         */
+
+        Castle castle = new Castle(100, 100, 400, 500, 3);
+        castle.draw(g);
     }
 }
