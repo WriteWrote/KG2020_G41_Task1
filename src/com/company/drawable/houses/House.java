@@ -1,8 +1,7 @@
 package com.company.drawable.houses;
 
 import com.company.Drawable;
-import com.company.drawable.util_units.Door;
-import com.company.drawable.util_units.Window;
+import com.company.drawable.util_drawunits.Window;
 
 import java.awt.*;
 

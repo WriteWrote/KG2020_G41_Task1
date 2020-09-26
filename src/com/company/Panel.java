@@ -1,29 +1,26 @@
 package com.company;
 
 import com.company.drawable.houses.*;
+import com.company.drawable.util_drawunits.CouncilSpike;
+import com.company.drawable.util_drawunits.Tower;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.TooManyListenersException;
 
 public class Panel extends JPanel {
     @Override
     public void paint(Graphics g) {
         //super.paint(g);
-        /*OneFloorHouse oneFloorHouse = new OneFloorHouse(getWidth()/8, 2*getHeight()/5, getWidth()/5, 2*getHeight()/5);
-        oneFloorHouse.draw(g);
-*/
-        NFloorHouse ThreeFloorHouse = new NFloorHouse(350, 50, 70, 100, 3, Color.GREEN);
-        ThreeFloorHouse.draw(g);
+        Tower tower = new Tower(100, 70, 100, 180);
+        tower.draw(g);
+        tower = new Tower(220, 20, 130, 230);
+        tower.draw(g);
+        tower = new Tower (370, 70, 100, 180);
+        tower.draw(g);
 
-        NFloorHouse OneFloorHouse = new NFloorHouse(450, 50, 100, 100, 1, Color.MAGENTA);
-        OneFloorHouse.draw(g);
-
-        Capitol library = new Capitol(50, 200, 120, 100, "Library", Color.MAGENTA);
-        Capitol school = new Capitol(50, 350, 170, 100, "School #7", Color.ORANGE);
-        school.draw(g);
-        library.draw(g);
-
-        /*OneFloorHouse f = new OneFloorHouse(50, 50, 100, 100, Color.ORANGE);
-        f.draw(g);*/
+        g.setColor(Color.pink);
+        g.fillRect(80, 249, 410, 100);
+        int x;
     }
 }
