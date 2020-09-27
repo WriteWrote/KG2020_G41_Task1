@@ -1,6 +1,6 @@
 package com.company.drawable.houses;
 
-import com.company.Drawable;
+import com.company.drawable.House;
 
 import java.awt.*;
 

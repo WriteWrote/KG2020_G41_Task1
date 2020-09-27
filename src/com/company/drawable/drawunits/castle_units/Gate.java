@@ -1,4 +1,4 @@
-package com.company.drawable.util_drawunits;
+package com.company.drawable.drawunits.castle_units;
 
 import com.company.Drawable;
 
@@ -31,11 +31,17 @@ public class Gate implements Drawable {
 
         g2.setColor(Color.black);
         g2.setStroke(new BasicStroke(3));
-        g2.drawLine(X+width/2, Y+2, X+width/2, Y + height/2-1);
+        g2.drawLine(X + width / 2, Y + 2, X + width / 2, Y + height / 2 - 1);
 
         g2.setColor(Color.YELLOW);
         g2.setStroke(new BasicStroke(4));
-        g2.drawOval(X + width/2 - width/3, Y + height/4, width/7, width/5);
-        g2.drawOval(X + width/2 + width/6, Y + height/4, width/7, width/5);
+
+        g.fillOval(X + width / 2 - width / 3 + width / 40, Y + height / 4 - width / 20,
+                width / 10, width / 10);
+        g.fillOval(X + width / 2 + width / 6 + width / 40, Y + height / 4 - width / 20,
+                width / 10, width / 10);
+
+        g2.drawOval(X + width / 2 - width / 3, Y + height / 4, width / 7, width / 5);
+        g2.drawOval(X + width / 2 + width / 6, Y + height / 4, width / 7, width / 5);
     }
 }

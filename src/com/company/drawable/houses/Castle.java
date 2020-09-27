@@ -1,7 +1,8 @@
 package com.company.drawable.houses;
 
-import com.company.drawable.util_drawunits.Gate;
-import com.company.drawable.util_drawunits.Tower;
+import com.company.drawable.House;
+import com.company.drawable.drawunits.castle_units.Gate;
+import com.company.drawable.drawunits.castle_units.Tower;
 
 import java.awt.*;
 

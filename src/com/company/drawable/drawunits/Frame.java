@@ -1,4 +1,4 @@
-package com.company.drawable.util_drawunits;
+package com.company.drawable.drawunits;
 
 import com.company.Drawable;
 

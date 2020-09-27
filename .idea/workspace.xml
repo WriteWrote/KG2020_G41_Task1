@@ -26,10 +26,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
-      <recent name="com.company.drawable.util_units" />
-      <recent name="com.company.drawable.houses" />
+      <recent name="com.company.drawable.drawunits.nature_units" />
+      <recent name="com.company.drawable.drawunits" />
       <recent name="com.company.drawable" />
-      <recent name="com.company.Drawable" />
+      <recent name="com.company.drawable.drawunits.castle_units" />
+      <recent name="com.company.drawable.util_units" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -86,6 +87,22 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/company/drawable/World.java</url>
+          <line>30</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/company/drawable/Sky.java</url>
+          <line>27</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/KG2020_G41_Task1$Main.ic" NAME="Main Coverage Results" MODIFIED="1600347879136" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
