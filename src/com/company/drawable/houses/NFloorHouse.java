@@ -2,6 +2,7 @@ package com.company.drawable.houses;
 
 import com.company.drawable.House;
 import com.company.drawable.drawunits.*;
+import com.company.drawable.drawunits.Window;
 
 import java.awt.*;
 
@@ -39,12 +40,14 @@ public class NFloorHouse extends House {
         for (int i = 0; i < N_OfFloor; i++) {
             drawHouseUnit(g, X, Y + floorHeight / 3 + i * floorHeight, floorWidth, floorHeight, color);
             //g.fillRect(X, Y + floorHeight / 3 + i * floorHeight, floorWidth, floorHeight);
-            //Window window = new Window(X + floorWidth / 8, Y + 2 * floorHeight / 4 + i * floorHeight, floorWidth / 4, floorHeight / 3);
-            //window.draw(g);
+            if (i != N_OfFloor - 1) {
+                Window window = new Window(X + floorWidth / 2 + floorWidth / 8, Y + floorHeight / 3 + floorHeight / 2 + i * floorHeight, floorWidth / 4, floorHeight / 3);
+                window.draw(g);
+            }
         }
 
-        Door door = new Door(X + floorWidth / 2, Y + (N_OfFloor) * floorHeight - floorHeight / 6,
-                floorWidth / 3, floorHeight / 2);
+        Door door = new Door(X + floorWidth / 2 + floorWidth/10, Y + (N_OfFloor) * floorHeight - floorHeight / 2 + floorHeight/11,
+                floorWidth / 4, 3*floorHeight / 4);
         door.draw(g);
 
     }

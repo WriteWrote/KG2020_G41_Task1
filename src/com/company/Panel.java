@@ -3,6 +3,7 @@ package com.company;
 import com.company.drawable.World;
 import com.company.drawable.drawunits.nature_units.BushTree;
 import com.company.drawable.drawunits.nature_units.Cloud;
+import com.company.drawable.drawunits.nature_units.Hill;
 import com.company.drawable.drawunits.nature_units.TwoFloorTree;
 import com.company.drawable.houses.*;
 
@@ -13,10 +14,8 @@ public class Panel extends JPanel {
     @Override
     public void paint(Graphics g) {
         //super.paint(g);
-
         World braveNewWorld = new World();
         braveNewWorld.draw(g);
-        Castle castle = new Castle(100, 100, 400, 400, 3);
-        castle.draw(g);
+
     }
 }

@@ -1,6 +1,7 @@
 package com.company.drawable.houses;
 
 import com.company.drawable.House;
+import com.company.drawable.drawunits.Door;
 
 import java.awt.*;
 
@@ -40,6 +41,10 @@ public class Capitol extends House {
         g.fillRect(X + (width - lengthOfText) / 2, Y, lengthOfText, 25);
         g.setColor(Color.black);
         g.drawString(name, X + (width - lengthOfText + 7) / 2 + lengthOfText / 8, Y + 3 * 25 / 5);
+
+        Door door = new Door(X + width / 2+width/8, Y + height/2,
+                width / 5, height / 2, Color.LIGHT_GRAY);
+        door.draw(g);
 
     }
 }
