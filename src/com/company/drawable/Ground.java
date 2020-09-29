@@ -27,7 +27,7 @@ public class Ground implements Drawable {
         for (int i = 1; i <= N; i++) {
             int random = (int) (Math.random() * 100 + Math.random() * 1000 * i);
             hillPoints[i - 1][0] = random + (150 * i / 2);
-            hillPoints[i - 1][1] = 400;
+            hillPoints[i - 1][1] = 500 - 100*i;
             Hill hill = new Hill(random, 500 - 100 * i, 150 * i, 200 * i);
             hill.draw(g);
         }

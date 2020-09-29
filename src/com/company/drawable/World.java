@@ -17,7 +17,6 @@ public class World implements Drawable {
     private int N_ofClouds = 5;
     private int N_ofHills = 3;
     private boolean isSunny = false;
-    private int [][] hillPoints;
 
     public World() {
 
@@ -33,13 +32,15 @@ public class World implements Drawable {
 
     @Override
     public void draw(Graphics g) {
-        Sky sky = new Sky(N_ofClouds);
+        Sky sky = new Sky(N_ofClouds, true);
         sky.draw(g);
 
         Ground ground = new Ground(N_ofHills);
         ground.draw(g);
+        int[][] hillPoints = ground.getHillPoints();
+        setRandomTrees(g, hillPoints);
 
-        hillPoints = ground.getHillPoints();
+
 /*
         Castle castle = new Castle(50, 100, 200, 200, 3);
         castle.draw(g);
@@ -55,5 +56,17 @@ public class World implements Drawable {
         house.draw(g);
 */
 
+    }
+
+    private void setRandomTrees(Graphics g, int[][] hillPoints) {
+        //Math.random() * (max - min) + min
+        int N_OfTreesOnTheHills = (int) (Math.random() * (hillPoints.length - 1) + 1);
+        for (int i = 0; i < N_OfTreesOnTheHills; i++){
+            BushTree bushTree = new BushTree(hillPoints[i][0] - 25, hillPoints[i][1] - 65, 50,70);
+            bushTree.draw(g);
+        }
+        TwoFloorTree tree = new TwoFloorTree(hillPoints[N_OfTreesOnTheHills-1][0], hillPoints[N_OfTreesOnTheHills-1][1] - 105,
+                60, 120, new Color(0x25872F), new Color(0x874D46));
+        tree.draw(g);
     }
 }
