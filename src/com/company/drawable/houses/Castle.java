@@ -70,7 +70,7 @@ public class Castle extends House {
             }
         }
 
-        Gate gate = new Gate(X + deltaX*(N_OfTowers/2+1), Y+2*deltaY+deltaY/4-1, deltaX, 3*deltaY/2);
+        Gate gate = new Gate(X + deltaX*(N_OfTowers/2+1), Y+2*deltaY+deltaY/4, deltaX, 3*deltaY/2);
         gate.draw(g);
     }
 }

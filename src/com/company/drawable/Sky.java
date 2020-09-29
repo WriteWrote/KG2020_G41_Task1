@@ -27,16 +27,15 @@ public class Sky implements Drawable {
     public void draw(Graphics g) {
         g.setColor(skyColor);
         g.fillRect(0, 0, 1500, 500);
-
-        for (int i=0; i<N; i++){
-            int random = (int) (Math.random() * 100 + Math.random() * 1000 * i);
-            Cloud cloud = new Cloud(random, 200-50*i, 100*i, 80*i);
-            cloud.draw(g);
-        }
         if (isSunny){
             int random = (int) (Math.random() * 100 + Math.random() * 1000);
             Sun sun = new Sun(random, 100, 100, 50, 13);
             sun.draw(g);
+        }
+        for (int i=0; i<N; i++){
+            int random = (int) (Math.random() * 100 + Math.random() * 1000 * i);
+            Cloud cloud = new Cloud(random, 200-50*i, 100*i, 80*i);
+            cloud.draw(g);
         }
     }
 }
