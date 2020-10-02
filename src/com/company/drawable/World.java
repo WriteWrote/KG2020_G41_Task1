@@ -10,6 +10,8 @@ import com.company.drawable.houses.Castle;
 import com.company.drawable.houses.NFloorHouse;
 
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class World implements Drawable {
     private Color groundColor = new Color(0x6A7C43);
@@ -17,6 +19,7 @@ public class World implements Drawable {
     private int N_ofClouds = 5;
     private int N_ofHills = 7;
     private boolean isSunny = false;
+    ArrayList<Drawable> props = new ArrayList<Drawable>();
 
     public World() {
 
@@ -25,9 +28,18 @@ public class World implements Drawable {
     public World(Color groundColor, Color skyColor, int n_ofClouds, int n_ofHills, boolean isSunny) {
         this.groundColor = groundColor;
         this.skyColor = skyColor;
-        N_ofClouds = n_ofClouds;
+        /*N_ofClouds = n_ofClouds;
         N_ofHills = n_ofHills;
-        this.isSunny = isSunny;
+        this.isSunny = isSunny;*/
+        Sky sky = new Sky(n_ofClouds, isSunny);
+        Ground ground = new Ground(n_ofHills);
+
+        props.addAll(generateRandomHouses(ground.getHillPoints()));
+        props.addAll(generateRandomTrees(ground.getHillPoints()));
+
+        props.add(new Castle(0, 150, 400, 500, 3));
+        props.add(new Capitol(550, 549, 100, 100, "Library"));
+        props.add(new NFloorHouse(20, 530, 100, 50, 2));
     }
 
     @Override
@@ -37,6 +49,7 @@ public class World implements Drawable {
 
         Ground ground = new Ground(N_ofHills);
         ground.draw(g);
+
         int[][] hillPoints = ground.getHillPoints();
         setRandomHouses(g, hillPoints);
         setRandomTrees(g, hillPoints);
@@ -49,6 +62,14 @@ public class World implements Drawable {
 
         NFloorHouse house = new NFloorHouse(20, 530, 100, 50, 2);
         house.draw(g);
+    }
+
+    private List<Drawable> generateRandomTrees(int[][] hillPoints) {
+
+    }
+
+    private List<Drawable> generateRandomHouses(int[][] hillPoints) {
+
     }
 
     private void setRandomTrees(Graphics g, int[][] hillPoints) {

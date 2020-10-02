@@ -93,12 +93,12 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/company/drawable/World.java</url>
-          <line>80</line>
+          <line>96</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/company/drawable/World.java</url>
-          <line>109</line>
+          <line>125</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
