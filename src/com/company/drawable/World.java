@@ -49,7 +49,6 @@ public class World implements Drawable {
 
         NFloorHouse house = new NFloorHouse(20, 530, 100, 50, 2);
         house.draw(g);
-
     }
 
     private void setRandomTrees(Graphics g, int[][] hillPoints) {
@@ -95,26 +94,18 @@ public class World implements Drawable {
         Capitol school = new Capitol(randomX, randomY - 80,
                 100, 80, "Lyceum #2", new Color(0xEB9F82));
         school.draw(g);
-        for (int i=0; i<N; i++){
-            double rYHouses = randomY - (i % 2 + 1) * 15 + Math.pow(-1, i) * randomY / 20 / i;
-            if (i%2==0){
-                NFloorHouse oneFloorHouse = new NFloorHouse(randomX - 47*i,
-                        (int) rYHouses,
-                        40, 30, i%2+1, new Color(0x73C8EC));
+        for (int i = 0; i < N; i++) {
+            if (i % 2 == 0) {   // только одноэтажные дома
+                int rX = (int) (Math.random() * (randomX - 800 - 80) + 800 - 80);
+                int rY = (int) (Math.random() * (700 - 500) + 500);
+                NFloorHouse oneFloorHouse = new NFloorHouse(rX, rY, 30, 30, 1);
                 oneFloorHouse.draw(g);
-            }
-            else{
-                NFloorHouse twoFloorHouse = new NFloorHouse(randomX + 60 + 47*i,
-                        (int) rYHouses,
-                        40, 30,i%2+1, new Color(0x73C8EC));
+            } else {            // только двухэтажные дома
+                int rX = (int) (Math.random() * (1000 - randomX - 100) + randomX + 100);
+                int rY = (int) (Math.random() * (700 - 500) + 500);
+                NFloorHouse twoFloorHouse = new NFloorHouse(rX, rY, 30, 30, 2);
                 twoFloorHouse.draw(g);
-
             }
-            /*NFloorHouse nFloorHouse = new NFloorHouse((int) (randomX - Math.pow(-1, i)*50*i),
-                    randomY - (i%2+1)*15,
-                    40, 30,
-                    i%2+1, new Color(0x73C8EC));
-            nFloorHouse.draw(g);*/
         }
 
     }

@@ -30,22 +30,22 @@ public class Castle extends House {
 
     @Override
     public void draw(Graphics g) {
-        int[] pointsXForBottom = new int[N_OfTowers * 4 + 2];
-        int[] pointsYForBottom = new int[N_OfTowers * 4 + 2];
         int deltaX = width / N_OfTowers;
         int deltaY = height / 3;
-        g.setColor(color);
         if (N_OfTowers % 2 == 0) {
             for (int i = 1; i <= (N_OfTowers) / 2; i++) {
+                g.setColor(color);
                 g.fillRect(X + deltaX * i, Y + (i % 2) * deltaY / 5 + deltaY * 2, deltaX, deltaY - (i % 2) * deltaY / 5);
-                Tower tower = new Tower(X + deltaX * i + deltaX / 2, Y + (i % 2) * deltaY / 5 + deltaY * 2, deltaX * 3 / 4, 3 * deltaY / 2);
+                Tower tower = new Tower(X + deltaX * i + deltaX / 8, Y + (i % 2) * deltaY / 5 + deltaY, deltaX * 3 / 4, 3 * deltaY / 2);
                 tower.draw(g);
             }
-
+            g.setColor(color);
             g.fillRect(X + deltaX * (N_OfTowers / 2) + deltaX, Y + deltaY * 2, deltaX, deltaY);
-
             for (int i = N_OfTowers / 2 + 2; i <= N_OfTowers + 1; i++) {
+                g.setColor(color);
                 g.fillRect(X + deltaX * i, Y + (i % 2) * deltaY / 5 + deltaY * 2, deltaX, deltaY - (i % 2) * deltaY / 5);
+                Tower tower = new Tower(X + deltaX * i + deltaX / 8, Y + (i % 2) * deltaY / 5 + deltaY, deltaX * 3 / 4, 3 * deltaY / 2);
+                tower.draw(g);
             }
         }
         if (N_OfTowers % 2 == 1) {
@@ -58,7 +58,7 @@ public class Castle extends House {
 
             g.setColor(color);
             g.fillRect(X + deltaX * ((N_OfTowers + 1) / 2), Y + deltaY * 2, deltaX, deltaY);
-            Tower centerTower = new Tower(X + deltaX * ((N_OfTowers + 1) / 2) + deltaX / 8, Y+1, deltaX*3/4, deltaY*2);
+            Tower centerTower = new Tower(X + deltaX * ((N_OfTowers + 1) / 2) + deltaX / 8, Y + 1, deltaX * 3 / 4, deltaY * 2);
             centerTower.draw(g);
 
 
@@ -70,7 +70,7 @@ public class Castle extends House {
             }
         }
 
-        Gate gate = new Gate(X + deltaX*(N_OfTowers/2+1), Y+2*deltaY+deltaY/4, deltaX, 3*deltaY/2);
+        Gate gate = new Gate(X + deltaX * (N_OfTowers / 2 + 1), Y + 2 * deltaY + deltaY / 4, deltaX, 3 * deltaY / 2);
         gate.draw(g);
     }
 }
