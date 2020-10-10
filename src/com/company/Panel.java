@@ -9,7 +9,7 @@ public class Panel extends JPanel {
     @Override
     public void paint(Graphics g) {
         //super.paint(g);
-        World braveNewWorld = new World(new Color(0x6A7C43), new Color(0x6FC6D0), 5, 7, true);
+        World braveNewWorld = new World();
         braveNewWorld.draw(g);
 
     }

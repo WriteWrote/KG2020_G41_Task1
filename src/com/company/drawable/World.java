@@ -8,7 +8,6 @@ import com.company.drawable.houses.Castle;
 import com.company.drawable.houses.NFloorHouse;
 
 import java.awt.*;
-import java.util.ArrayList;
 
 public class World implements Drawable {
     private Color groundColor = new Color(0x6A7C43);
@@ -16,11 +15,6 @@ public class World implements Drawable {
     private int N_ofClouds = 5;
     private int N_ofHills = 7;
     private boolean isSunny = false;
-    ArrayList<Drawable> props = new ArrayList<Drawable>();
-
-    public World() {
-
-    }
 
     public World(Color groundColor, Color skyColor, int n_ofClouds, int n_ofHills, boolean isSunny) {
         this.groundColor = groundColor;
@@ -30,12 +24,16 @@ public class World implements Drawable {
         this.isSunny = isSunny;
     }
 
+    public World() {
+
+    }
+
     @Override
     public void draw(Graphics g) {
-        Sky sky = new Sky(N_ofClouds, true);
+        Sky sky = new Sky(skyColor, N_ofClouds, isSunny);
         sky.draw(g);
 
-        Ground ground = new Ground(N_ofHills);
+        Ground ground = new Ground(N_ofHills, groundColor);
         ground.draw(g);
 
         int[][] hillPoints = ground.getHillPoints();
