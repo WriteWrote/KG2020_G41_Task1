@@ -1,9 +1,7 @@
 package com.company.drawable;
 
 import com.company.Drawable;
-import com.company.Panel;
 import com.company.drawable.drawunits.nature_units.BushTree;
-import com.company.drawable.drawunits.nature_units.Hill;
 import com.company.drawable.drawunits.nature_units.TwoFloorTree;
 import com.company.drawable.houses.Capitol;
 import com.company.drawable.houses.Castle;
@@ -11,7 +9,6 @@ import com.company.drawable.houses.NFloorHouse;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.List;
 
 public class World implements Drawable {
     private Color groundColor = new Color(0x6A7C43);
@@ -28,18 +25,9 @@ public class World implements Drawable {
     public World(Color groundColor, Color skyColor, int n_ofClouds, int n_ofHills, boolean isSunny) {
         this.groundColor = groundColor;
         this.skyColor = skyColor;
-        /*N_ofClouds = n_ofClouds;
+        N_ofClouds = n_ofClouds;
         N_ofHills = n_ofHills;
-        this.isSunny = isSunny;*/
-        Sky sky = new Sky(n_ofClouds, isSunny);
-        Ground ground = new Ground(n_ofHills);
-
-        props.addAll(generateRandomHouses(ground.getHillPoints()));
-        props.addAll(generateRandomTrees(ground.getHillPoints()));
-
-        props.add(new Castle(0, 150, 400, 500, 3));
-        props.add(new Capitol(550, 549, 100, 100, "Library"));
-        props.add(new NFloorHouse(20, 530, 100, 50, 2));
+        this.isSunny = isSunny;
     }
 
     @Override
@@ -62,14 +50,6 @@ public class World implements Drawable {
 
         NFloorHouse house = new NFloorHouse(20, 530, 100, 50, 2);
         house.draw(g);
-    }
-
-    private List<Drawable> generateRandomTrees(int[][] hillPoints) {
-
-    }
-
-    private List<Drawable> generateRandomHouses(int[][] hillPoints) {
-
     }
 
     private void setRandomTrees(Graphics g, int[][] hillPoints) {
@@ -116,12 +96,12 @@ public class World implements Drawable {
                 100, 80, "Lyceum #2", new Color(0xEB9F82));
         school.draw(g);
         for (int i = 0; i < N; i++) {
-            if (i % 2 == 0) {   // только одноэтажные дома
-                int rX = (int) (Math.random() * (randomX - 800 - 80) + 800 - 80);
+            if (i % 2 == 0) {
+                int rX = (int) (Math.random() * (randomX - 800 - 100) + 800 - 100);
                 int rY = (int) (Math.random() * (700 - 500) + 500);
                 NFloorHouse oneFloorHouse = new NFloorHouse(rX, rY, 30, 30, 1);
                 oneFloorHouse.draw(g);
-            } else {            // только двухэтажные дома
+            } else {
                 int rX = (int) (Math.random() * (1000 - randomX - 100) + randomX + 100);
                 int rY = (int) (Math.random() * (700 - 500) + 500);
                 NFloorHouse twoFloorHouse = new NFloorHouse(rX, rY, 30, 30, 2);
